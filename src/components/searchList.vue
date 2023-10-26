@@ -72,8 +72,8 @@ const jumpToCourse = () => {
   box-sizing: border-box;
   padding: 20px;
   width: 20%;
-  max-width: 300px;
-  min-width: 100px;
+  max-width: 400%;
+  min-width: 300px;
   height: 100%;
 }
 .item-box {

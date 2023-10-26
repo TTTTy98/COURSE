@@ -8,15 +8,15 @@ const routes = [
         path: '/login',
         name: 'login',
         meta: {
-            title: '登录'
+            title: 'Login'
         },
         component: () => import('../view/Login.vue')
     },
     {
         path: '/home',
-        name: '主页',
+        name: 'Home',
         meta: {
-            title: '主页'
+            title: 'Home'
         },
         component: () => import('../view/Home.vue'),
         redirect: '/index',
@@ -24,21 +24,21 @@ const routes = [
             {
                 path: '/index',
                 meta: {
-                    title: '首页'
+                    title: 'Course'
                 },
-                component: () => import('../view/Welcome.vue')
+                component: () => import('../view/Course.vue')
             },
             {
                 path: '/user/list',
                 meta: {
-                    title: '用户管理'
+                    title: 'User'
                 },
                 component: () => import('../view/user/Index.vue'),
             },
             {
                 path: '/user/detail',
                 meta: {
-                    title: '用户详情'
+                    title: 'User Detail'
                 },
                 component: () => import('../view/user/Detail.vue'),
             },
@@ -55,11 +55,11 @@ router.beforeEach((to, from, next) => {
     if (to.meta.title) {
       document.title = 'Course management system - ' + to.meta.title
     }
-    // 放行登录页面
+    // login success
     if (to.path === '/login') {
       return next()
     }
-    // 获取token
+    // get token
     // const token= sessionStorage.getItem('token')
     // if (!token) {
     //   return next('/login')
@@ -69,5 +69,5 @@ router.beforeEach((to, from, next) => {
     return next()
   })
   
-// 导出路由
+// export router
 export default router
