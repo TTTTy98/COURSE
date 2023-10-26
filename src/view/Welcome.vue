@@ -6,7 +6,7 @@
 </template>
 
 <script setup>
-import searchList from '../components/courseCard.vue'
+import searchList from '../components/searchList.vue'
 
 </script>
 
