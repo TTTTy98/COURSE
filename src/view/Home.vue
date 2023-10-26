@@ -71,7 +71,7 @@
                           <!-- 主要内容   -->
                         <router-view></router-view>
                     </el-main>  
-                    <el-footer>Copyright © 2022 知否技术</el-footer>
+                    <!-- <el-footer>course management</el-footer> -->
                 </el-container>
             </el-container> 
         </el-container>

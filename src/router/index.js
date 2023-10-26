@@ -42,6 +42,14 @@ const routes = [
                 },
                 component: () => import('../view/user/Detail.vue'),
             },
+            {
+                path: 'course/courseForm',
+                name: 'courseForm',
+                meta: {
+                    title: 'Course Form'
+                },
+                component: () => import('../view/CourseForm/CourseForm.vue'),
+            },
         ]
     },
 ]

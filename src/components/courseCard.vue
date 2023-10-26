@@ -3,7 +3,7 @@
  * @Author: 
  */
 <template>
-  <el-card class="box-card">
+  <el-card class="box-card"  >
     <slot name="header">
       <div class="header">
         <div class="logo">logo</div>
@@ -18,7 +18,7 @@
       <div class="footer">
         <div>{{ studentNum || 0 }} students</div>
         <div class="btn-box">
-          <el-button class="course-btn" @click="clickHandler">Apply</el-button>
+          <el-button class="course-btn" @click="jumpToForm">Apply</el-button>
         </div>
       </div>
     </div>
@@ -26,6 +26,9 @@
 </template>
   <script setup>
 import { ref, computed } from "vue";
+import { useRouter } from "vue-router";
+
+const router = useRouter();
 const props = defineProps({
   cardData: {
     type: Object,
@@ -36,6 +39,9 @@ const props = defineProps({
 const studentNum = computed(() => {
   return props.cardData.studentNumber; //TODO check fields
 });
+const jumpToForm = () => {
+  router.push({ name: "courseForm", query: { courseId: props.cardData.title } });
+};
 </script>
 
 <style lang="scss" scoped>
