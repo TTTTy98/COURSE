@@ -1,18 +1,20 @@
 <template>
     <div class="main">
-123123123
+        
+        <searchList />
     </div>
 </template>
+
+<script setup>
+import searchList from '../components/courseCard.vue'
+
+</script>
 
 <style  scoped>
 .main {
     text-align: center;
-    padding: 5px;
+    padding: 24px;
     background: white;
-    height: 100%;
-    /* background-image: url("../assets/img/index.gif"); */
-    background-repeat: no-repeat;
-    background-size: 100% 100%;
-    background-position-y: bottom;
+    height:calc( 100% - 60px); 
 }
 </style>
