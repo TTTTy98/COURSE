@@ -8,7 +8,7 @@ export default defineConfig({
     port: 3000,
     proxy: {
       '/api': {
-        target: 'http://117.33.255.178:22:8082/zhifou-study', // 
+        target: 'https://82066id128.yicp.fun', // 
         changeOrigin: true,
         rewrite: (path) => path.replace(/^\/api/, '')
       },
@@ -16,3 +16,4 @@ export default defineConfig({
   },
 
 })
+

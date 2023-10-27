@@ -13,8 +13,18 @@
 
 <script setup>
 import searchList from "../components/searchList.vue";
-import courseCard from "../components/courseCard.vue";
-import { ref } from "vue";
+import courseCard from "../components/courseCard.vue"; 
+import { onMounted, ref } from 'vue';
+import userApi from '../api/user'
+ //请求例子
+  onMounted(() => {
+    userApi.getUserList().then(res=>{
+      console.log('------->');
+      console.log(res);
+    })
+  })
+//例子end
+
 const listData = ref([
     {
         title:110,
