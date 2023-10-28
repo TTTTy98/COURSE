@@ -10,7 +10,8 @@
                     <el-col :span="8">
                         <div class="tab-box">
                             <div class="tab-item"  index="/index" @click="saveActiveNav('/index')">Course</div>
-                            <div class="tab-item" index="/user/list" @click="saveActiveNav('/user/list')">Applications</div>
+                            <div class="tab-item" index="/user/list" @click="myApplications('/user/list')" v-show="!ifTeacher">My Applications</div>
+                            <div class="tab-item" index="/user/CourseManagement" @click="saveActiveNav('/user/CourseManagement')" v-show="ifTeacher">Course Management</div>
                         </div>
                     </el-col>
                     <el-col :offset="9"  :span="5" style="min-width: 150px">
@@ -79,18 +80,28 @@
     </div>
 </template>
 <script setup>
-import { onBeforeMount, ref } from 'vue';
+import { onBeforeMount, ref,onMounted } from 'vue';
 import avatar from "../assets/img/avator.jpg"
 import logoJpg from "../assets/img/icon.jpg"
 import { useRouter } from 'vue-router'
+import { Management } from '@element-plus/icons-vue';
 const router = useRouter();
-const userName = JSON.parse(localStorage.getItem('user')).userName
+const ifTeacher =ref(false)
+const userName = JSON.parse(sessionStorage.getItem('user')).userName
 // 挂载 DOM 之前
 onBeforeMount(() => {
     activePath.value = sessionStorage.getItem("activePath")
         ? sessionStorage.getItem("activePath")
         : "/index"
 })
+onMounted(() => {
+    if(JSON.parse(sessionStorage.getItem('user')).userType==0){
+   
+    ifTeacher.value=false;
+  }else{
+ 
+    ifTeacher.value=true;
+  }})
 let isCollapse = ref(false);
 let activePath = ref("");
 // 保存链接的激活状态
@@ -98,6 +109,12 @@ const saveActiveNav = (path) => {
     sessionStorage.setItem("activePath", path);
     activePath.value = path;
     router.push(path);
+}
+const myApplications=(path)=> {
+ 
+    sessionStorage.setItem("activePath", path);
+    activePath.value = path;
+    router.push({ name: "User", query: { classId:'',major:'',studnetId:JSON.parse(sessionStorage.getItem('user')).id } });
 }
 const logout = () => {
     // 清除缓存

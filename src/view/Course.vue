@@ -23,13 +23,13 @@ const listData = ref([]);
 
 const dataQuery = () => {
   const param = {
-    id: "",
+    // id: "",
     major: searchValue.value,
-    needed: 0,
-    remark: '',
+    // needed: 0,
+    // remark: '',
     stage: activeStage.value,
-    teacherId: "",
-    upi: "",
+    // teacherId: "",
+    // upi: "",
   };
   userApi.getClassList(param).then((res) => {
     listData.value = res.data;
@@ -37,8 +37,7 @@ const dataQuery = () => {
 };
 
 const searchParams = (e) => {
-  console.log(123123,e)
-  
+
   activeStage.value = e.activeStage;
   searchValue.value = e.searchValue;
   dataQuery();

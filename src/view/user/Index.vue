@@ -7,19 +7,27 @@
                 </template>
             </el-input> -->
             <el-table :data="tableData" border style="width: 100%;margin-top:20px">
-                <el-table-column prop="name" label="姓名" width="180" />
-                <el-table-column prop="age" label="年龄" width="180" />
-                <el-table-column label="操作" width="330">
+                <el-table-column prop="major" label="major" width="180" />
+                <el-table-column prop="studentName" label="studentName" width="180" />
+                <el-table-column prop="gpa" label="gpa" width="180" sortable/>
+                <el-table-column prop="grade" label="grade" width="180" sortable/>
+                <el-table-column prop="studyType" label="studyType" width="180" />
+                <el-table-column prop="email" label="email" width="180" />
+                <el-table-column prop="phone" label="phone" width="180" />
+                <el-table-column prop="maxWorkload" label="maxWorkload" width="180" sortable/>
+                <el-table-column prop="previousExperience" label="previousExperience" width="250" />
+                <el-table-column label="operate" width="300">
                     <template #default="scope">
-                        <el-button type="danger" size="small" @click="deleteUser(scope.row.id)">删除</el-button>
-                        <el-button size="small"
-                            @click="() => router.push({ path: '/user/detail', query: { id: scope.row.id } })">详情</el-button>
+                   
+                        <el-button type="success" size="small" @click="agreeUser(scope.row.id)" v-show="ifTeacher">agree</el-button>
+                        <el-button type="danger" size="small" @click="deleteUser(scope.row.id)" >delete</el-button>
+
                     </template>
                 </el-table-column>
             </el-table>
             <!-- 分页 -->
             <el-pagination style="margin-top:20px" :current-page="searchForm.current" :page-size="searchForm.size"
-                :page-sizes="[10, 20, 30, 40]" layout="->,total, sizes, prev, pager, next, jumper" :total="total"
+                :page-sizes="[10, 20, 30, 40]" layout="->, sizes, prev, pager, next, jumper" :total="total"
                 @size-change="handleSizeChange" @current-change="handleCurrentChange" />
         </el-card>
     </div>
@@ -29,13 +37,36 @@
 import userApi from "../../api/user";
 import { onMounted, reactive, ref } from "vue";
 import { ElMessage, ElMessageBox } from 'element-plus';
-import { useRouter } from 'vue-router'
+import { useRouter,useRoute } from 'vue-router'
 const router = useRouter();
+const route = useRoute();
+
+const ifTeacher =ref(false)
+const {
+  query: { classId,major,studentId },
+} = route;
 // Dom 挂载之后
 onMounted(() => {
-    userApi.getrecordList().then(res=>{
-        
-    })
+    if(JSON.parse(sessionStorage.getItem('user')).userType==0){
+   
+    ifTeacher.value=false;
+  }else{
+ 
+    ifTeacher.value=true;
+  }
+    const param = {
+    // id: "",
+    major: major,
+    studnetId:studentId
+    // studentId:studentId
+    // needed: 0,
+    // remark: '',
+    // stage: activeStage.value,
+    // teacherId: "",
+    // upi: "",
+  };
+    getrecordList(param)
+   
 })
 // 用户数据
 let tableData = ref([]);
@@ -46,12 +77,12 @@ const searchForm = reactive({
     size: 10,
     name: ''
 })
-// 获取用户列表
-const getUserList = async () => {
-    const res = await userApi.getUserList(searchForm);
-    console.log(res);
-    tableData.value = res.data.data.records;
-    total.value = res.data.data.total;
+
+const getrecordList = (param) => {
+    userApi.getrecordList(param).then(res=>{
+        tableData.value=res.data
+       
+    })
 }
 const handleSizeChange = (size) => {
     searchForm.size = size;
@@ -61,31 +92,61 @@ const handleCurrentChange = (current) => {
     searchForm.current = current;
     getUserList();
 }
-const searchUser = () => {
-    searchForm.current = 1;
-    getUserList();
-}
+
 // 删除用户
 const deleteUser = (id) => {
     ElMessageBox.confirm(
-        '确定要删除该用户信息吗?',
+        'delete this application?',
         {
-            confirmButtonText: '确定',
-            cancelButtonText: '取消',
+            confirmButtonText: 'sure',
+            cancelButtonText: 'cancel',
             type: 'warning',
         }
     ).then(async () => {
-        const res = await userApi.delUser({ id: id });
-        if (res.data.success) {
-            ElMessage.success("删除成功")
-            getUserList();
-        } else {
-            ElMessage.error("删除失败")
-        }
+        userApi.deleteRecord(id).then(res=>{
+       if(res.data.resultCode =='success'){
+        ElMessage.success("delete success!")
+        const param = {
+     major: major,
+     studnetId:studentId
+        };
+    getrecordList(param)
+       }
+        
+    })
+
     }).catch(() => {
         ElMessage({
             type: 'info',
-            message: '取消删除',
+            message: 'cancel',
+        })
+    })
+}
+const agreeUser = (id) => {
+    ElMessageBox.confirm(
+        'agree this application?',
+        {
+            confirmButtonText: 'sure',
+            cancelButtonText: 'cancel',
+            type: 'success',
+        }
+    ).then(async () => {
+        userApi.agreeRecord(id).then(res=>{
+       if(res.data.resultCode =='success'){
+        ElMessage.success("success!")
+        const param = {
+     major: major,
+     studnetId:studentId
+        };
+    getrecordList(param)
+       }
+        
+    })
+
+    }).catch(() => {
+        ElMessage({
+            type: 'info',
+            message: 'cancel',
         })
     })
 }

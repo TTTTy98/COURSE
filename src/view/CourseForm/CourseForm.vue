@@ -81,12 +81,12 @@
   </el-col>
   <el-col :span="12">
     <el-form-item
-      label="Explanation if no grade"
+      label="previousExperience"
       label-width="200"
-      prop="explanation"
+      prop="previousExperience"
     >
       <!--TODO v-if="isReadOnly || ruleForm.grade === ???" -->
-      <el-input type="textarea" :disable="readOnly" v-model="ruleForm.hours" />
+      <el-input type="textarea" :disable="readOnly" v-model="ruleForm.previousExperience" />
     </el-form-item>
   </el-col>
   <el-col :span="12">
@@ -118,12 +118,12 @@
 
 
   
-    <el-form-item>
+    <div style="position: absolute;left: 50%;transform: translate(-50%);margin-top: 30px;">
       <el-button @click="resetForm(ruleFormRef)">Back</el-button>
       <el-button type="primary" @click="submitForm(ruleForm)">
         Submit
       </el-button>
-    </el-form-item>
+    </div>
   </el-form>
 
 </template>

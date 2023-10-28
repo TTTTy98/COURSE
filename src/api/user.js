@@ -24,9 +24,19 @@ const getstageList = (data) => {
 const recordSave = (data) => {
     return http.post("/record/save", data);
 };
-const getrecordList = (data) => {
-    return http.get("/record/list");
+const classSave = (data) => {
+    return http.post("/class/save", data);
+};
+const getrecordList = (param) => {
+    return http.post("/record/list",param);
+};
+
+const deleteRecord = (data) => {
+    return http.post("/record/delete?id="+data);
+};
+const agreeRecord = (data) => {
+    return http.post("/record/agree?id="+data);
 };
 export default {
-    login, getUserList, saveUser, delUser, getUserDetail,getClassList,getstageList,recordSave,getrecordList
+    login, getUserList, saveUser, delUser, getUserDetail,getClassList,getstageList,recordSave,getrecordList,deleteRecord,agreeRecord,classSave
 }

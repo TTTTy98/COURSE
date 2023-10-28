@@ -55,7 +55,7 @@ onMounted(() => {
   userApi.getstageList().then((res) => {
     searchResult.value = res.data;
   });
-  // JSON.parse(window.localStorage.users)
+  // JSON.parse(window..vue,.tsage.users)
 });
 </script>
 

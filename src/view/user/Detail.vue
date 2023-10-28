@@ -36,9 +36,9 @@ const router = useRouter();
 
 const userType = computed(() => {
   if (userDetail.userType == 0) {
-    return "admin";
+    return "student";
   }
-  if (userDetail.userType == 2) {
+  if (userDetail.userType == 1) {
     return "teacher";
   }
   return "student";
@@ -46,7 +46,7 @@ const userType = computed(() => {
 
 const userDetail = ref([]);
 onMounted(() => {
-  userDetail.value = JSON.parse(localStorage.getItem("user"));
+  userDetail.value = JSON.parse(sessionStorage.getItem("user"));
 });
 </script>
 

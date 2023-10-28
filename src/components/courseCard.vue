@@ -21,18 +21,23 @@
       </div>
       <div class="footer">
         <div>needed:{{ props.cardData.needed || 0 }} students</div>
-        <div class="btn-box">
+        <div class="btn-box" v-show="ifStudent">
           <el-button type="primary" class="course-btn" @click="jumpToForm">Apply</el-button>
+        </div>
+        <div class="btn-box" v-show="ifTeacher">
+          <el-button type="primary" class="course-btn" @click="jumpToApply">check</el-button>
         </div>
       </div>
     </div>
   </el-card>
 </template>
   <script setup>
-import { ref, computed } from "vue";
+import { ref, computed,onMounted } from "vue";
 import { useRouter } from "vue-router";
 
 import classJpg from "../assets/img/class.png"
+const ifStudent =ref(false)
+const ifTeacher =ref(false)
 const router = useRouter();
 const props = defineProps({
   cardData: {
@@ -41,10 +46,22 @@ const props = defineProps({
     default: () => {},
   },
 });
-
+onMounted(() => {
+  if(JSON.parse(sessionStorage.getItem('user')).userType==0){
+    ifStudent.value=true;
+    ifTeacher.value=false;
+  }else{
+    ifStudent.value=false;
+    ifTeacher.value=true;
+  }
+});
 const jumpToForm = () => {
 
   router.push({ name: "courseForm", query: { classId: props.cardData.id,major:props.cardData.major } });
+};
+const jumpToApply = () => {
+
+router.push({ name: "User", query: { classId: props.cardData.id,major:props.cardData.major } });
 };
 </script>
 

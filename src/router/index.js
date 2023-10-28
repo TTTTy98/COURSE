@@ -30,10 +30,11 @@ const routes = [
             },
             {
                 path: '/user/list',
+                name: 'User',
                 meta: {
                     title: 'User'
                 },
-                component: () => import('../view/user/Index.vue'),
+                component: () => import('../view/user/index.vue')
             },
             {
                 path: '/user/detail',
@@ -49,6 +50,14 @@ const routes = [
                     title: 'Course Form'
                 },
                 component: () => import('../view/CourseForm/CourseForm.vue'),
+            },
+            {
+                path: '/user/CourseManagement',
+                name: 'CourseManagement',
+                meta: {
+                    title: 'Course Management'
+                },
+                component: () => import('../view/user/CourseManagement.vue'),
             },
         ]
     },
