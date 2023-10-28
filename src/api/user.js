@@ -16,7 +16,7 @@ const getUserDetail = (data) => {
     return http.get("/user/get?id="+data);
 };
 const getClassList = (data) => {
-    return http.post("/class/list", {});
+    return http.post("/class/list", data);
 };
 const getstageList = (data) => {
     return http.post("/class/stageList?teacherId=", data);
