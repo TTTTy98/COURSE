@@ -11,7 +11,7 @@
         class="input-with-select"
       >
         <template #append>
-          <el-button :icon="Search" @click="searchParams" />
+          <el-button :icon="Search" @click="searchParams()" />
         </template>
       </el-input>
     </template>
@@ -20,7 +20,7 @@
         :class="{ active: item === activeStage, 'search-item': true }"
         v-for="(item, index) in searchResult"
         :key="index"
-        @click="searchParams(item, index)"
+        @click="searchParams(item)"
       >
         {{ item }}
       </div>
@@ -43,6 +43,8 @@ const searchParams = (item) => {
     } else {
       activeStage.value = item;
     }
+  } else {
+    activeStage.value = "";
   }
   emits("searchParams", {
     activeStage: activeStage.value,

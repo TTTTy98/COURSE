@@ -37,6 +37,8 @@ const dataQuery = () => {
 };
 
 const searchParams = (e) => {
+  console.log(123123,e)
+  
   activeStage.value = e.activeStage;
   searchValue.value = e.searchValue;
   dataQuery();
