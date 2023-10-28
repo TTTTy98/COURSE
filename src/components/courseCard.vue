@@ -6,19 +6,23 @@
   <el-card class="box-card"  >
     <slot name="header">
       <div class="header">
-        <div class="logo">logo</div>
-        <div class="title">{{ props.cardData.title }}</div>
-        <div class="star">star</div>
+        <!-- <div class="logo">logo</div> -->
+        <el-avatar shape="square" :src="classJpg" ></el-avatar>
+        <div class="title">{{ props.cardData.major }}</div>
+        <div class="star"></div>
       </div>
     </slot>
     <div class="body-box">
       <div class="body">
-        {{ props.cardData.desc }}
+        {{ props.cardData.stage }}
+      </div>
+      <div class="body">
+        {{ props.cardData.remark }}
       </div>
       <div class="footer">
-        <div>{{ studentNum || 0 }} students</div>
+        <div>needed:{{ props.cardData.needed || 0 }} students</div>
         <div class="btn-box">
-          <el-button class="course-btn" @click="jumpToForm">Apply</el-button>
+          <el-button type="primary" class="course-btn" @click="jumpToForm">Apply</el-button>
         </div>
       </div>
     </div>
@@ -28,6 +32,7 @@
 import { ref, computed } from "vue";
 import { useRouter } from "vue-router";
 
+import classJpg from "../assets/img/class.png"
 const router = useRouter();
 const props = defineProps({
   cardData: {
@@ -36,11 +41,10 @@ const props = defineProps({
     default: () => {},
   },
 });
-const studentNum = computed(() => {
-  return props.cardData.studentNumber; //TODO check fields
-});
+
 const jumpToForm = () => {
-  router.push({ name: "courseForm", query: { courseId: props.cardData.title } });
+
+  router.push({ name: "courseForm", query: { classId: props.cardData.id,major:props.cardData.major } });
 };
 </script>
 
@@ -70,7 +74,7 @@ const jumpToForm = () => {
   box-sizing: border-box;
   width: 300px;
   height: 350px;
-  margin-bottom: 24px;
+  margin-left: 24px;
 }
 .body-box {
   width: 100%;

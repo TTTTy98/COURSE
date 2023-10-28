@@ -1,6 +1,6 @@
 <template>
   <div class="main">
-    <searchList />
+    <searchList @searchParmas="searchParmas"/>
     <div class="list-body">
       <courseCard
         v-for="(item, index) in listData"
@@ -8,61 +8,31 @@
         :cardData="item"
       />
     </div>
+ 
   </div>
 </template>
 
 <script setup>
 import searchList from "../components/searchList.vue";
 import courseCard from "../components/courseCard.vue"; 
+
 import { onMounted, ref } from 'vue';
 import userApi from '../api/user'
  //请求例子
   onMounted(() => {
-    userApi.getUserList().then(res=>{
-      console.log('------->');
-      console.log(res);
+    
+    userApi.getClassList().then(res=>{
+      listData.value=res.data
     })
+
   })
-//例子end
+
 
 const listData = ref([
-    {
-        title:110,
-        desc:'asdasdasdasdasdasdad',
-        studentNum:20
-    },
-    {
-        title:110,
-        desc:'asdasdasdasdasdasdad',
-        studentNum:20
-    },
-    {
-        title:110,
-        desc:'asdasdasdasdasdasdad',
-        studentNum:20
-    },
-    {
-        title:110,
-        desc:'asdasdasdasdasdasdad',
-        studentNum:20
-    },
-    {
-        title:110,
-        desc:'asdasdasdasdasdasdad',
-        studentNum:20
-    },
-    {
-        title:110,
-        desc:'asdasdasdasdasdasdad',
-        studentNum:20
-    },
-    {
-        title:110,
-        desc:'asdasdasdasdasdasdad',
-        studentNum:20
-    },
-
 ])
+const searchParmas = (e) => {
+  console.log(e)
+};
 </script>
 
 <style  scoped>
@@ -72,7 +42,8 @@ const listData = ref([
   text-align: center;
   padding: 24px;
   background: white;
-  height: calc(100% - 60px);
+  /* height: calc(100% - 60px); */
+  height: 100%;
 }
 .list-body {
   display: flex;
@@ -80,8 +51,8 @@ const listData = ref([
   width:100%;
   height:100%;
   overflow-y: auto; 
-  margin-left:24px;
-  justify-content: space-between;
+  margin-left:30px;
+  justify-content: start;
   flex-wrap: wrap;
 }
 

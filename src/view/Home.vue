@@ -5,24 +5,25 @@
             <el-header>
                 <el-row>
                     <el-col :span="2">
-                        <p class="system-name">logologo</p>
+                        <el-avatar shape="square" :src="logoJpg" style="margin: 10px;"></el-avatar>
                     </el-col>
-                    <el-col :span="10">
+                    <el-col :span="8">
                         <div class="tab-box">
                             <div class="tab-item"  index="/index" @click="saveActiveNav('/index')">Course</div>
                             <div class="tab-item" index="/user/list" @click="saveActiveNav('/user/list')">Applications</div>
                         </div>
                     </el-col>
-                    <el-col :offset="12" :span="8" style="min-width: 150px">
+                    <el-col :offset="9"  :span="5" style="min-width: 150px">
                         <el-dropdown style="float: right; margin: 20px 10px">
                             <span class="el-dropdown-link" style="color: #fff; cursor: pointer">
-                                知否君 &nbsp;&nbsp; <el-icon class="el-icon--right">
+                                {{userName}} &nbsp;&nbsp; <el-icon class="el-icon--right">
                                     <arrow-down />
                                 </el-icon>
                             </span>
                             <template #dropdown>
                                 <el-dropdown-menu>
-                                    <el-dropdown-item @click.native="logout">退出系统</el-dropdown-item>
+                                    <el-dropdown-item @click="() => router.push({ path: '/user/detail', query: { id: 123 } })">Details</el-dropdown-item>
+                                    <el-dropdown-item @click.native="logout">Log out</el-dropdown-item>
                                 </el-dropdown-menu>
                             </template>
                         </el-dropdown>
@@ -80,8 +81,10 @@
 <script setup>
 import { onBeforeMount, ref } from 'vue';
 import avatar from "../assets/img/avator.jpg"
+import logoJpg from "../assets/img/icon.jpg"
 import { useRouter } from 'vue-router'
 const router = useRouter();
+const userName = JSON.parse(localStorage.getItem('user')).userName
 // 挂载 DOM 之前
 onBeforeMount(() => {
     activePath.value = sessionStorage.getItem("activePath")
@@ -114,7 +117,7 @@ const logout = () => {
 }
 
 .el-header {
-    background: #2661ef;
+    background: #303133;
     padding: 0 10px;
     overflow: hidden;
 }

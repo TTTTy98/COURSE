@@ -1,11 +1,11 @@
 <template>
     <div>
         <el-card>
-            <el-input style="width:440px" @clear="searchUser" clearable v-model="searchForm.name" placeholder="请输入用户姓名" class="input-with-select">
+            <!-- <el-input style="width:440px" @clear="searchUser" clearable v-model="searchForm.name" placeholder="请输入用户姓名" class="input-with-select">
                 <template #append>
                     <el-button icon="Search" @click="searchUser" />
                 </template>
-            </el-input>
+            </el-input> -->
             <el-table :data="tableData" border style="width: 100%;margin-top:20px">
                 <el-table-column prop="name" label="姓名" width="180" />
                 <el-table-column prop="age" label="年龄" width="180" />
@@ -33,7 +33,9 @@ import { useRouter } from 'vue-router'
 const router = useRouter();
 // Dom 挂载之后
 onMounted(() => {
-    getUserList();
+    userApi.getrecordList().then(res=>{
+        
+    })
 })
 // 用户数据
 let tableData = ref([]);

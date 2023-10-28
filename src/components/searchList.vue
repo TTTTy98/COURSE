@@ -12,7 +12,7 @@
         class="input-with-select"
       >
         <template #append>
-          <el-button :icon="Search" />
+          <el-button :icon="Search" @click="searchParmas"/>
         </template>
       </el-input>
     </template>
@@ -21,50 +21,38 @@
         class="search-item"
         v-for="(item, index) in searchResult"
         :key="index"
-        @click="jumpToCourse"
+        @click="searchParmas(index)"
       >
-        {{ item.value }}
+        {{ item }}
       </div>
     </div>
   </el-card> 
 </template>
   <script setup>
-import { ref } from "vue";
+import { onMounted,ref } from "vue";
 import { Search } from "@element-plus/icons-vue";
+import userApi from '../api/user'
+onMounted(() => {
+    
+    userApi.getstageList().then(res=>{
+      searchResult.value=res.data
+
+    })
+    // JSON.parse(window.localStorage.users)
+
+  })
 const searchValue = ref("");
 const searchResult = ref([
-  {
-    value: 12312313,
-  },
-  {
-    value: 12312313,
-  },
-  {
-    value: 12312313,
-  },
-  {
-    value: 12312313,
-  },
-  {
-    value: 12312313,
-  },
-  {
-    value: 12312313,
-  },  
-  {
-    value: 12312313,
-  },
-  {
-    value: 12312313,
-  },
-  {
-    value: "1231eq2313",
-  }, 
+ 
 ]);
-
-const jumpToCourse = () => {
-  // jump to course
+const emits = defineEmits(["searchParmas"]);
+const searchParmas = (index) => {
+  emits("searchParmas", [{
+    coureseid:searchValue.value,
+    coures:index
+  }]);
 };
+
 </script>
 
 <style lang="scss" scoped>

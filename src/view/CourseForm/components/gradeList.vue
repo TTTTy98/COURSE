@@ -1,5 +1,5 @@
 <template>
-  <el-table :data="tableData" height="250" border>
+  <el-table :data="tableData" height="200" border>
     <el-table-column width="100" align="center">
       <template #default="scope">
         <el-radio
@@ -10,7 +10,7 @@
         > 
       </template>
     </el-table-column>
-    <el-table-column align="center" prop="value" label="label" width="300" />
+    <el-table-column align="center" prop="value" label="grade" width="300" />
   </el-table>
 </template>
   
@@ -20,47 +20,32 @@ const radio = ref("");
 const tableCurrentInfo = ref({});
 const tableData = ref([
   {
-    value: "A+",
+    value: "6",
     label: "A+",
   },
   {
-    value: "A",
+    value: "5",
     label: "A",
   },
   {
-    value: "A-",
+    value: "4",
     label: "A-",
   },
   {
-    value: "B+",
+    value: "3",
     label: "B+",
   },
   {
-    value: "B",
+    value: "2",
     label: "B",
   },
   {
-    value: "B-",
+    value: "1",
     label: "B-",
   },
+ 
   {
-    value: "C+",
-    label: "C+",
-  },
-  {
-    value: "C",
-    label: "C",
-  },
-  {
-    value: "C-",
-    label: "C-",
-  },
-  {
-    value: "C-",
-    label: "C-",
-  },
-  {
-    value: "No Grade",
+    value: "0",
     label: "No Grade",
   },
 ]);
