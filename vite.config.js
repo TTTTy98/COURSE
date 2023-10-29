@@ -3,9 +3,12 @@ import vue from '@vitejs/plugin-vue'
 
 export default defineConfig({
   plugins: [vue()],
+  base:'./',
+  // publicPath: './',
   server: {
     open: false,
     port: 3000,
+    
     proxy: {
       '/api': {
         target: 'https://82066id128.yicp.fun', // 
