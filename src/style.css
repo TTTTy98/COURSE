@@ -5,9 +5,19 @@ body {
     height: 100%;
     background: #fff;
 }
-div{
+
+#app {
+    height: 100%;
+}
+.app-box{
+    height: 100%;
+}
+
+
+div {
     box-sizing: border-box;
 }
+
 /* 表格统一样式 */
 .el-table .el-table__header-wrapper thead th,
 .el-table .el-table__fixed-header-wrapper thead th {

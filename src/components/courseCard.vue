@@ -36,6 +36,14 @@ import { ref, computed,onMounted } from "vue";
 import { useRouter } from "vue-router";
 
 import classJpg from "../assets/img/class.png"
+//TODO 添加管理员身份判断 需要在哪里使用
+const isAdmin = computed(() => {
+  return JSON.parse(sessionStorage.getItem("user")).userType == 0;
+});
+//TODO 添加学生身份判断 需要在哪里使用
+const isStudent = computed(() => {
+  return JSON.parse(sessionStorage.getItem("user")).userType == 2;
+});
 const ifStudent =ref(false)
 const ifTeacher =ref(false)
 const router = useRouter();
