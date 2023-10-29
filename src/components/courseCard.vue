@@ -3,11 +3,11 @@
  * @Author: 
  */
 <template>
-  <el-card class="box-card"  >
+  <el-card class="box-card">
     <slot name="header">
       <div class="header">
         <!-- <div class="logo">logo</div> -->
-        <el-avatar shape="square" :src="classJpg" ></el-avatar>
+        <el-avatar shape="square" :src="classJpg"></el-avatar>
         <div class="title">{{ props.cardData.major }}</div>
         <div class="star"></div>
       </div>
@@ -22,31 +22,37 @@
       <div class="footer">
         <div>needed:{{ props.cardData.needed || 0 }} students</div>
         <div class="btn-box" v-show="ifStudent">
-          <el-button type="primary" class="course-btn" @click="jumpToForm">Apply</el-button>
+          <el-button type="primary" class="course-btn" @click="jumpToForm"
+            >Apply</el-button
+          >
         </div>
         <div class="btn-box" v-show="ifTeacher">
-          <el-button type="primary" class="course-btn" @click="jumpToApply">check</el-button>
+          <el-button type="primary" class="course-btn" @click="jumpToApply"
+            >check</el-button
+          >
         </div>
       </div>
     </div>
   </el-card>
 </template>
   <script setup>
-import { ref, computed,onMounted } from "vue";
+import { ref, computed, onMounted } from "vue";
 import { useRouter } from "vue-router";
 
-import classJpg from "../assets/img/class.png"
-//TODO 添加管理员身份判断 需要在哪里使用
+import classJpg from "../assets/img/class.png";
+//TODO 添加管理员身份判断 需要在哪里使用(不用store的话)
 const isAdmin = computed(() => {
   return JSON.parse(sessionStorage.getItem("user")).userType == 0;
 });
-//TODO 添加学生身份判断 需要在哪里使用
+//TODO 添加学生身份判断 需要在哪里使用(不用store的话)
 const isStudent = computed(() => {
   return JSON.parse(sessionStorage.getItem("user")).userType == 2;
 });
-const ifStudent =ref(false)
-const ifTeacher =ref(false)
+const ifStudent = ref(false);
+const ifTeacher = ref(false);
 const router = useRouter();
+const userRole = computed(() => store.getters["user/roleObj"]); //TODO store 里面有角色信息
+//TODO 从store里面取的话就不用其他的那几个computed了
 const props = defineProps({
   cardData: {
     type: Object,
@@ -55,21 +61,25 @@ const props = defineProps({
   },
 });
 onMounted(() => {
-  if(JSON.parse(sessionStorage.getItem('user')).userType==0){
-    ifStudent.value=true;
-    ifTeacher.value=false;
-  }else{
-    ifStudent.value=false;
-    ifTeacher.value=true;
+  if (JSON.parse(sessionStorage.getItem("user")).userType == 0) {
+    ifStudent.value = true;
+    ifTeacher.value = false;
+  } else {
+    ifStudent.value = false;
+    ifTeacher.value = true;
   }
 });
 const jumpToForm = () => {
-
-  router.push({ name: "courseForm", query: { classId: props.cardData.id,major:props.cardData.major } });
+  router.push({
+    name: "courseForm",
+    query: { classId: props.cardData.id, major: props.cardData.major },
+  });
 };
 const jumpToApply = () => {
-
-router.push({ name: "User", query: { classId: props.cardData.id,major:props.cardData.major } });
+  router.push({
+    name: "User",
+    query: { classId: props.cardData.id, major: props.cardData.major },
+  });
 };
 </script>
 

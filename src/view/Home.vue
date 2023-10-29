@@ -132,11 +132,11 @@ const userName = JSON.parse(sessionStorage.getItem("user")).userName;
 const ifTeacher = computed(() => {
   return JSON.parse(sessionStorage.getItem("user")).userType == 1;
 });
-//TODO 添加管理员身份判断 需要在哪里使用
+//TODO 添加管理员身份判断 需要在哪里使用(不用store的话)
 const isAdmin = computed(() => {
   return JSON.parse(sessionStorage.getItem("user")).userType == 0;
 });
-//TODO 添加学生身份判断 需要在哪里使用
+//TODO 添加学生身份判断 需要在哪里使用(不用store的话)
 const isStudent = computed(() => {
   return JSON.parse(sessionStorage.getItem("user")).userType == 2;
 });
