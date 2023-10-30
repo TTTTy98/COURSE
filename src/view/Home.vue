@@ -24,7 +24,7 @@
                 class="tab-item"
                 index="/user/list"
                 @click="myApplications('/user/list')"
-                v-show="!ifTeacher"
+                v-show="ifStudent"
               >
                 My Applications
               </div>

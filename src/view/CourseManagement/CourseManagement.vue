@@ -11,8 +11,6 @@
         <el-table-column prop="needed" label="needed" width="180" />
         <el-table-column prop="remark" label="remark" width="180" sortable />
         <el-table-column prop="stage" label="stage" width="180" sortable />
-        <el-table-column prop="teacherId" label="teacherId" width="180" />
-        <el-table-column prop="upi" label="upi" width="180" />
         <el-table-column label="operate" width="300">
           <template #default="scope">
             <el-button
@@ -85,6 +83,7 @@ const addCourse = () => {
 const delCourse = (id) => {
   userApi.classDel(id).then((res) => {
     ElMessage.success("success!");
+    dataQuery();
   });
 };
 const editCourse = (id) => {

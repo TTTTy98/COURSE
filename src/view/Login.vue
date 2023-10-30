@@ -14,12 +14,9 @@
       </el-header> -->
       <el-main>
         <div class="login_card">
-          <el-avatar
-            shape="square"
-            :size="100"
-            :src="logoJpg"
-            style="position: absolute; left: 0%; top: -17%"
-          ></el-avatar>
+          <div class="logopic">
+
+          </div>
           <el-card>
             <el-form
               :model="form"
@@ -57,7 +54,7 @@
 import userApi from "../api/user";
 import { reactive, ref, getCurrentInstance } from "vue";
 import { ElMessage } from "element-plus";
-import logoJpg from "../assets/img/icon.jpg";
+import logoJpg from "../assets/img/icon.png";
 import router from "../router/index";
 import { useStore } from "vuex";
 const store = useStore()
@@ -129,6 +126,15 @@ const resetForm = () => {
   background-image: url("../assets/img/icon.jpg");
   background-repeat: no-repeat;
   background-size: cover;
+}
+.logopic {
+  width: 120px;
+  height: 120px;
+  position: absolute;
+  background-image: url("../assets/img/icon.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  top: -43%;
 }
 .login_card {
   /* margin: 200px 500px; */

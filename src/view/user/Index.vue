@@ -31,7 +31,7 @@
               type="success"
               size="small"
               @click="agreeUser(scope.row.id)"
-              v-show="ifTeacher"
+              v-show="!ifStudent"
               >agree</el-button
             >
             <el-button

@@ -26,7 +26,7 @@
             >Apply</el-button
           >
         </div>
-        <div class="btn-box" v-show="ifTeacher">
+        <div class="btn-box" v-show="!ifStudent">
           <el-button type="primary" class="course-btn" @click="jumpToApply"
             >check</el-button
           >

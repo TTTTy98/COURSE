@@ -9,7 +9,7 @@ const user = {
     mutations: {
         SET_USER_INFO(state, data) {
             state.userInfo = data;
-            debugger
+
             this.commit('SET_ROLE')
         },
         SET_ROLE(state) {
