@@ -38,36 +38,21 @@
   <script setup>
 import { ref, computed, onMounted } from "vue";
 import { useRouter } from "vue-router";
-
 import classJpg from "../assets/img/class.png";
-//TODO 添加管理员身份判断 需要在哪里使用(不用store的话)
-const isAdmin = computed(() => {
-  return JSON.parse(sessionStorage.getItem("user")).userType == 0;
-});
-//TODO 添加学生身份判断 需要在哪里使用(不用store的话)
-const isStudent = computed(() => {
-  return JSON.parse(sessionStorage.getItem("user")).userType == 2;
-});
-const ifStudent = ref(false);
-const ifTeacher = ref(false);
+import {useStore} from 'vuex'
+const store = useStore()
+
 const router = useRouter();
-const userRole = computed(() => store.getters["user/roleObj"]); //TODO store 里面有角色信息
-//TODO 从store里面取的话就不用其他的那几个computed了
+const userRole = computed(() => store.getters["roleObj"]);
+const ifStudent = computed(() => userRole.value.isStudent);
+const ifTeacher = computed(() => userRole.value.isTeacher);
+const ifAdmin = computed(() => userRole.value.isAdmin);
 const props = defineProps({
   cardData: {
     type: Object,
     require: true,
     default: () => {},
   },
-});
-onMounted(() => {
-  if (JSON.parse(sessionStorage.getItem("user")).userType == 0) {
-    ifStudent.value = true;
-    ifTeacher.value = false;
-  } else {
-    ifStudent.value = false;
-    ifTeacher.value = true;
-  }
 });
 const jumpToForm = () => {
   router.push({

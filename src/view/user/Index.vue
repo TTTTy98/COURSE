@@ -63,20 +63,15 @@ import userApi from "../../api/user";
 import { onMounted, reactive, ref } from "vue";
 import { ElMessage, ElMessageBox } from "element-plus";
 import { useRouter, useRoute } from "vue-router";
+import {useStore} from 'vuex'
+
 const router = useRouter();
 const route = useRoute();
-
-const ifTeacher = computed(() => {
-  return JSON.parse(sessionStorage.getItem("user")).userType == 1;
-});
-//TODO 添加管理员身份判断 需要在哪里使用(不用store的话)
-const isAdmin = computed(() => {
-  return JSON.parse(sessionStorage.getItem("user")).userType == 0;
-});
-//TODO 添加学生身份判断 需要在哪里使用(不用store的话)
-const isStudent = computed(() => {
-  return JSON.parse(sessionStorage.getItem("user")).userType == 2;
-});
+const store = useStore()
+const userRole = computed(() => store.getters["roleObj"]);
+const ifStudent = computed(() => userRole.value.isStudent);
+const ifTeacher = computed(() => userRole.value.isTeacher);
+const ifAdmin = computed(() => userRole.value.isAdmin);
 const {
   query: { classId, major, studentId },
 } = route;

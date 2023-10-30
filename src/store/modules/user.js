@@ -4,11 +4,12 @@ const user = {
         isStudent: false,
         isTeacher: false,
         isAdmin: false,
-        userInfo: null,
+        userInfo: {},
     },
     mutations: {
         SET_USER_INFO(state, data) {
             state.userInfo = data;
+            debugger
             this.commit('SET_ROLE')
         },
         SET_ROLE(state) {

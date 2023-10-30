@@ -130,20 +130,10 @@ import { Management } from "@element-plus/icons-vue";
 import { useStore } from "vuex";
 const store = useStore()
 const router = useRouter();
-const userRole = computed(() => store.getters["user/roleObj"]);
-const userName = computed(() => store.getters["user/userData"]);// JSON.parse(sessionStorage.getItem("user")).userName;
-
-// const ifTeacher = computed(() => {
-//   return JSON.parse(sessionStorage.getItem("user")).userType == 1;
-// });
-//TODO 添加管理员身份判断 需要在哪里使用(不用store的话)
-// const isAdmin = computed(() => {
-//   return JSON.parse(sessionStorage.getItem("user")).userType == 0;
-// });
-//TODO 添加学生身份判断 需要在哪里使用(不用store的话)
-// const isStudent = computed(() => {
-//   return JSON.parse(sessionStorage.getItem("user")).userType == 2;
-// });
+const userRole = computed(() => store.getters["roleObj"]);
+const userData = computed(() => store.getters["userData"]); 
+ 
+console.log('userData',userData.value) 
 // 挂载 DOM 之前
 onBeforeMount(() => {
   activePath.value = sessionStorage.getItem("activePath")
