@@ -10,7 +10,12 @@
         > 
       </template>
     </el-table-column>
-    <el-table-column align="center" prop="value" label="grade" width="300" />
+    <el-table-column align="center" prop="label" label="grade" width="300" >
+      <template #default="scope">
+       <span class="grade-word">
+{{ scope.row.label }}
+       </span>
+      </template></el-table-column>
   </el-table>
 </template>
   
@@ -21,27 +26,27 @@ const tableCurrentInfo = ref({});
 const tableData = ref([
   {
     value: "6",
-    label: "a+",
+    label: "A+",
   },
   {
     value: "5",
-    label: "a",
+    label: "A",
   },
   {
     value: "4",
-    label: "a-",
+    label: "A-",
   },
   {
     value: "3",
-    label: "b+",
+    label: "A+",
   },
   {
     value: "2",
-    label: "b",
+    label: "A",
   },
   {
     value: "1",
-    label: "b-",
+    label: "A-",
   },
  
   {
@@ -55,3 +60,11 @@ const tableCurrentChange = (row) => {
   emits("chooseGrade", row.value);
 };
 </script>
+
+<style lang="scss" scoped>
+.grade-word{
+  display: inline-block;
+  width:30px;
+  text-align: left;
+}
+</style>
