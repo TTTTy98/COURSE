@@ -5,27 +5,13 @@
 </template>
 <script setup>
 import { computed } from "vue";
-import userApi from "./api/user";
-const sessionUpi = computed(() => {
-  return sessionStorage.getItem("userName");
+import {useStore} from 'vuex';
+const store = useStore();
+const userInfo = computed(() => {
+  return JSON.stringify(localStorage.getItem("userInfo"));
 });
-const sessionPwd = computed(() => {
-  return sessionStorage.getItem("pwd");
-});
-if (sessionUpi.value && sessionPwd.value) {
-  userApi
-    .login({
-      upi: sessionUpi.value,
-      password: sessionPwd.value,
-    })
-    .then((res) => {
-      if (!res.data.user) {
-        ElMessage.error(res.data.remark);
-        return;
-      }
-      console.log(123123123, JSON.stringify(res.data.user));
-      store.commit("SET_USER_INFO", res.data.user); 
-    });
+if (userInfo.value) {
+  store.commit("SET_USER_INFO", userInfo.value);
 }
 </script>
 <style scoped>

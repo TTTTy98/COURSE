@@ -89,11 +89,10 @@ const onSubmit = () => {
           return;
         }
         proxy.$commonJs.changeView("/home");
-        ElMessage.success("Welcome!");
-        console.log(JSON.stringify(res.data.user));
+        ElMessage.success("Welcome!"); 
         store.commit('SET_USER_INFO', res.data.user)
-        sessionStorage.setItem('userName', form.value.upi)
-        sessionStorage.setItem('pwd', form.value.password)
+        const time = new Date().getTime()
+        localStorage.setItem('userInfo', JSON.stringify(res.data.user))
       });
     } else {
       return false;

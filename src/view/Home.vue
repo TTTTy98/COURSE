@@ -164,7 +164,10 @@ const myApplications = (path) => {
 };
 const logout = () => {
   // 清除缓存
-  sessionStorage.clear();
+  sessionStorage.clear(); 
+  localStorage.removeItem('userInfo')
+  // localStorage.clear()
+ 
   router.push("/login");
 };
 </script>
