@@ -5,7 +5,7 @@
       :rules="rules"
       label-width="120px"
       class="demo-ruleForm"
-      :size="large"
+      :size="'large'"
       status-icon
       style="margin-top: 50px"
     >
@@ -86,8 +86,8 @@
 //   } = route;
   const courseId = ref('')
   const formSize = ref("default");
-  const ruleFormRef = ref();
-  const ruleForm = reactive({});
+  const ruleFormRef = ref({});
+  const ruleForm = ref({});
   const rules = reactive({
     major: [{ required: true, message: "Please input", trigger: "blur" }],
     needed: [{ required: true, message: "Please input", trigger: "blur" }],
@@ -121,9 +121,12 @@
   };
   onMounted(()=>{
       courseId.value = route.query.courseId
+      
       if(courseId.value){
         userApi.getClassDetail(courseId.value).then(res=>{
+          
             ruleForm.value = res.data;
+            console.log(ruleForm.value)
         })
       }
   

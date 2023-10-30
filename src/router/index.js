@@ -58,16 +58,14 @@ const routes = [
                     title: 'Course Management'
                 },
                 component: () => import('../view/CourseManagement/CourseManagement.vue'),
-                children: [
-                    {
-                        path: 'course/CourseDetail',
-                        name: 'CourseDetail',
-                        meta: {
-                            title: 'Course Detail'
-                        },
-                        component: () => import('../view/CourseManagement/CourseDetail.vue'),
-                    },
-                ]
+            },
+            {
+                path: 'course/CourseDetail',
+                name: 'CourseDetail',
+                meta: {
+                    title: 'Course Detail'
+                },
+                component: () => import('../view/CourseManagement/CourseDetail.vue'),
             },
         ]
     },

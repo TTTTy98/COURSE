@@ -28,10 +28,10 @@ const classSave = (data) => {
     return http.post("/class/save", data);
 };
 const getClassDetail = (id) => {
-    return http.post("/class/get", data);
+    return http.post("/class/get?id="+ id);
 };
 const classDel = (id) => {
-    return http.post("/class/delete", id);
+    return http.post("/class/delete?id="+ id);
 };
 const getrecordList = (param) => {
     return http.post("/record/list", param);

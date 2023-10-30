@@ -6,32 +6,19 @@
           <el-button class="course-btn" @click="addCourse">add</el-button>
         </div>
       </slot>
-      <el-table :data="tableData" border style="width: 100%; margin-top: 20px">
+      <el-table :data="listData" border style="width: 100%; margin-top: 20px">
         <el-table-column prop="major" label="major" width="180" />
-        <el-table-column prop="studentName" label="studentName" width="180" />
-        <el-table-column prop="gpa" label="gpa" width="180" sortable />
-        <el-table-column prop="grade" label="grade" width="180" sortable />
-        <el-table-column prop="studyType" label="studyType" width="180" />
-        <el-table-column prop="email" label="email" width="180" />
-        <el-table-column prop="phone" label="phone" width="180" />
-        <el-table-column
-          prop="maxWorkload"
-          label="maxWorkload"
-          width="180"
-          sortable
-        />
-        <el-table-column
-          prop="previousExperience"
-          label="previousExperience"
-          width="250"
-        />
+        <el-table-column prop="needed" label="needed" width="180" />
+        <el-table-column prop="remark" label="remark" width="180" sortable />
+        <el-table-column prop="stage" label="stage" width="180" sortable />
+        <el-table-column prop="teacherId" label="teacherId" width="180" />
+        <el-table-column prop="upi" label="upi" width="180" />
         <el-table-column label="operate" width="300">
           <template #default="scope">
             <el-button
               type="success"
               size="small"
               @click="editCourse(scope.row.id)"
-              v-show="ifTeacher"
               >edit</el-button
             >
             <el-button
@@ -42,7 +29,7 @@
             >
           </template>
         </el-table-column>
-      </el-table> 
+      </el-table>
       <el-pagination
         style="margin-top: 20px"
         :current-page="searchForm.current"
@@ -68,22 +55,28 @@ const router = useRouter();
 const route = useRoute();
 const store = useStore();
 const listData = ref([]);
+const total = ref(0)
+const searchForm = ref({
+  size: 10,
+  current: 0,
+});
 // const userRole = computed(() => store.getters["roleObj"]);
 const {
   query: { classId, major, studentId },
 } = route;
 
 const handleSizeChange = (size) => {
-  searchForm.size = size;
-  getUserList();
+  searchForm.value.size = size;
+  dataQuery();
 };
 const handleCurrentChange = (current) => {
-  searchForm.current = current;
-  getUserList();
+  searchForm.vale.current = current;
+  dataQuery();
 };
 const dataQuery = () => {
-  userApi.getClassList().then((res) => {
+  userApi.getClassList({}).then((res) => {
     listData.value = res.data;
+    total.value = res.data.length||0
   });
 };
 const addCourse = () => {

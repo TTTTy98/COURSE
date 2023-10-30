@@ -44,7 +44,7 @@
                 class="el-dropdown-link"
                 style="color: #fff; cursor: pointer"
               >
-                {{ userName }} &nbsp;&nbsp;
+                {{ userData.userName }} &nbsp;&nbsp;
                 <el-icon class="el-icon--right">
                   <arrow-down />
                 </el-icon>
