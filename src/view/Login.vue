@@ -59,6 +59,8 @@ import { reactive, ref, getCurrentInstance } from "vue";
 import { ElMessage } from "element-plus";
 import logoJpg from "../assets/img/icon.jpg";
 import router from "../router/index";
+import { useStore } from "vuex";
+const store = useStore()
 const { proxy } = getCurrentInstance();
 const form = reactive({
   upi: "",
@@ -87,11 +89,9 @@ const onSubmit = () => {
           return;
         }
         proxy.$commonJs.changeView("/home");
-
         ElMessage.success("Welcome!");
         console.log(JSON.stringify(res.data.user));
-        sessionStorage.setItem("user", JSON.stringify(res.data.user));
-        commit('user/SET_USER_INFO', userInfo)
+        store.commit('SET_USER_INFO', res.data.user)
       });
     } else {
       return false;

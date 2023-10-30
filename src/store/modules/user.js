@@ -26,6 +26,9 @@ const user = {
                 isTeacher: state.isTeacher,
                 isAdmin: state.isAdmin,
             }
+        },
+        userData(state){
+            return state.userInfo
         }
     }
 }
