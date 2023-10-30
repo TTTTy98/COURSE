@@ -158,7 +158,7 @@ const myApplications = (path) => {
     query: {
       classId: "",
       major: "",
-      studnetId: JSON.parse(sessionStorage.getItem("user")).id,
+      studnetId: userData.value.id,
     },
   });
 };
