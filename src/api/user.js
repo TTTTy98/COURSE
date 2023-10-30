@@ -27,6 +27,9 @@ const recordSave = (data) => {
 const classSave = (data) => {
     return http.post("/class/save", data);
 };
+const getClassDetail = (id) => {
+    return http.post("/class/get", data);
+};
 const classDel = (id) => {
     return http.post("/class/delete", id);
 };
@@ -41,5 +44,5 @@ const agreeRecord = (data) => {
     return http.post("/record/agree?id=" + data);
 };
 export default {
-    classDel, login, getUserList, saveUser, delUser, getUserDetail, getClassList, getstageList, recordSave, getrecordList, deleteRecord, agreeRecord, classSave
+    getClassDetail, classDel, login, getUserList, saveUser, delUser, getUserDetail, getClassList, getstageList, recordSave, getrecordList, deleteRecord, agreeRecord, classSave
 }
