@@ -42,8 +42,7 @@
             >
           </template>
         </el-table-column>
-      </el-table>
-      <!-- 分页 -->
+      </el-table> 
       <el-pagination
         style="margin-top: 20px"
         :current-page="searchForm.current"
@@ -92,7 +91,7 @@ const addCourse = () => {
 };
 const delCourse = (id) => {
   userApi.classDel(id).then((res) => {
-    ElMessage.success("SUCCESS!");
+    ElMessage.success("success!");
   });
 };
 const editCourse = (id) => {
