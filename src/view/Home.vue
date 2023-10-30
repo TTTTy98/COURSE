@@ -32,7 +32,7 @@
                 class="tab-item"
                 index="/user/CourseManagement"
                 @click="saveActiveNav('/user/CourseManagement')"
-                v-show="ifTeacher"
+                v-show="ifAdmin"
               >
                 Course Management
               </div>
@@ -132,7 +132,9 @@ const store = useStore()
 const router = useRouter();
 const userRole = computed(() => store.getters["roleObj"]);
 const userData = computed(() => store.getters["userData"]); 
- 
+const ifStudent = computed(() => userRole.value.isStudent);
+const ifTeacher = computed(() => userRole.value.isTeacher);
+const ifAdmin = computed(() => userRole.value.isAdmin);
 console.log('userData',userData.value) 
 // 挂载 DOM 之前
 onBeforeMount(() => {

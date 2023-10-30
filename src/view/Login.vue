@@ -92,6 +92,8 @@ const onSubmit = () => {
         ElMessage.success("Welcome!");
         console.log(JSON.stringify(res.data.user));
         store.commit('SET_USER_INFO', res.data.user)
+        sessionStorage.setItem('userName', form.value.upi)
+        sessionStorage.setItem('pwd', form.value.password)
       });
     } else {
       return false;
