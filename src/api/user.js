@@ -1,7 +1,7 @@
 import http from '../utils/http/http.js'
 
 const login = (data) => {
-    return http.post("/login?password="+data.password+"&upi="+data.upi, data);
+    return http.post("/login?password=" + data.password + "&upi=" + data.upi, data);
 };
 const getUserList = (data) => {
     return http.post("/user/list", data);
@@ -13,7 +13,7 @@ const delUser = (data) => {
     return http.del("/user/delete", data);
 };
 const getUserDetail = (data) => {
-    return http.get("/user/get?id="+data);
+    return http.get("/user/get?id=" + data);
 };
 const getClassList = (data) => {
     return http.post("/class/list", data);
@@ -27,16 +27,19 @@ const recordSave = (data) => {
 const classSave = (data) => {
     return http.post("/class/save", data);
 };
+const classDel = (id) => {
+    return http.post("/class/delete", id);
+};
 const getrecordList = (param) => {
-    return http.post("/record/list",param);
+    return http.post("/record/list", param);
 };
 
 const deleteRecord = (data) => {
-    return http.post("/record/delete?id="+data);
+    return http.post("/record/delete?id=" + data);
 };
 const agreeRecord = (data) => {
-    return http.post("/record/agree?id="+data);
+    return http.post("/record/agree?id=" + data);
 };
 export default {
-    login, getUserList, saveUser, delUser, getUserDetail,getClassList,getstageList,recordSave,getrecordList,deleteRecord,agreeRecord,classSave
+    classDel, login, getUserList, saveUser, delUser, getUserDetail, getClassList, getstageList, recordSave, getrecordList, deleteRecord, agreeRecord, classSave
 }
