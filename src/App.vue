@@ -8,9 +8,10 @@ import { computed } from "vue";
 import {useStore} from 'vuex';
 const store = useStore();
 const userInfo = computed(() => {
-  return JSON.stringify(localStorage.getItem("userInfo"));
+  return JSON.parse(localStorage.getItem("userInfo")) ;
 });
 if (userInfo.value) {
+  console.log('SET_USER_INFO',userInfo.value)
   store.commit("SET_USER_INFO", userInfo.value);
 }
 </script>

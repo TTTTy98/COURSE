@@ -7,7 +7,7 @@
 <script setup lang="ts">
 import { onMounted, ref } from 'vue';
 import userApi from '../api/user'
-const name = ref("关亚奇");
+const name = ref("");
   onMounted(() => {
     userApi.getUserList().then(res=>{
       console.log('------->');

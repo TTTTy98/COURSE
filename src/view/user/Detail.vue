@@ -31,9 +31,11 @@
 import { onBeforeMount, reactive, ref, onMounted, computed } from "vue";
 import { useRouter, useRoute } from "vue-router";
 import userApi from "../../api/user";
+import { useStore } from "vuex";
+const store = useStore();
+const userDetail = computed(() => store.getters["userData"]);
 const route = useRoute();
 const router = useRouter();
-
 const userType = computed(() => {
   if (userDetail.userType == 0) {
     return "student";
@@ -42,11 +44,6 @@ const userType = computed(() => {
     return "teacher";
   }
   return "student";
-});
-
-const userDetail = ref([]);
-onMounted(() => {
-  userDetail.value = JSON.parse(sessionStorage.getItem("user"));
 });
 </script>
 
