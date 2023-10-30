@@ -21,27 +21,27 @@ const tableCurrentInfo = ref({});
 const tableData = ref([
   {
     value: "6",
-    label: "A+",
+    label: "a+",
   },
   {
     value: "5",
-    label: "A",
+    label: "a",
   },
   {
     value: "4",
-    label: "A-",
+    label: "a-",
   },
   {
     value: "3",
-    label: "B+",
+    label: "b+",
   },
   {
     value: "2",
-    label: "B",
+    label: "b",
   },
   {
     value: "1",
-    label: "B-",
+    label: "b-",
   },
  
   {
