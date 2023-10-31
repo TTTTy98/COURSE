@@ -37,16 +37,7 @@
           <el-input :disable="readOnly" v-model="ruleForm.stage" />
         </el-form-item>
       </el-col>
-      <el-col :span="12">
-        <el-form-item label="teacherId" prop="teacherId">
-          <el-input :disable="readOnly" v-model="ruleForm.teacherId" />
-        </el-form-item>
-      </el-col>
-      <el-col :span="12">
-        <el-form-item label="upi" prop="upi">
-          <el-input :disable="readOnly" v-model="ruleForm.upi" />
-        </el-form-item>
-      </el-col>
+     
     </el-row>
 
     <div
@@ -111,7 +102,7 @@ const submitCourse = async (ruleForm) => {
     if (valid) {
       userApi.classSave(ruleForm).then((res) => {
         ElMessage.success("Success!");
-        router.push("/index");
+        router.push("/user/CourseManagement");
       });
     } else {
       console.log("error submit!", fields);
@@ -122,7 +113,7 @@ const chooseGrade = (e) => {
   ruleForm.grade = e;
 };
 const resetForm = () => {
-  router.push("/index");
+  router.push("/user/CourseManagement");
 };
 onMounted(() => {
   courseId.value = route.query.courseId;

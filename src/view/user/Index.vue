@@ -7,24 +7,18 @@
                 </template>
             </el-input> -->
       <el-table :data="tableData" border style="width: 100%; margin-top: 20px">
-        <el-table-column prop="major" label="major" width="180" />
-        <el-table-column prop="studentName" label="studentName" width="180" />
-        <el-table-column prop="gpa" label="gpa" width="180" sortable />
-        <el-table-column prop="grade" label="grade" width="180" sortable />
-        <el-table-column prop="studyType" label="studyType" width="180" />
-        <el-table-column prop="email" label="email" width="180" />
-        <el-table-column prop="phone" label="phone" width="180" />
+        <el-table-column prop="major" label="major" width="300" />
+        <el-table-column prop="studentName" label="studentName" width="300" v-show="!ifStudent" />
+        <el-table-column prop="gpa" label="gpa" width="300" sortable v-show="!ifStudent" />
+        <el-table-column prop="grade" label="grade" width="300" sortable v-show="!ifStudent" />
+       
         <el-table-column
           prop="maxWorkload"
           label="maxWorkload"
           width="180"
           sortable
         />
-        <el-table-column
-          prop="previousExperience"
-          label="previousExperience"
-          width="250"
-        />
+       
         <el-table-column label="operate" width="300">
           <template #default="scope">
             <el-button
@@ -70,6 +64,7 @@ const route = useRoute();
 const store = useStore()
 const userRole = computed(() => store.getters["roleObj"]);
 const ifStudent = computed(() => userRole.value.isStudent);
+debugger
 const ifTeacher = computed(() => userRole.value.isTeacher);
 const ifAdmin = computed(() => userRole.value.isAdmin);
 const {

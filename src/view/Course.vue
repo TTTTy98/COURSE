@@ -54,13 +54,13 @@ onMounted(() => {
   justify-content: space-between;
   text-align: center;
   padding: 24px;
-  background: white;
+  
   /* height: calc(100% - 60px); */
   height: 100%;
 }
 .list-body {
   display: flex;
-  background: white;
+ 
   width: 100%;
   height: 100%;
   overflow-y: auto;

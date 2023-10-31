@@ -3,14 +3,14 @@
     <el-card>
       <slot name="header">
         <div class="header">
-          <el-button class="course-btn" @click="addCourse">add</el-button>
+          <el-button type="primary" class="course-btn" @click="addCourse">add Course</el-button>
         </div>
       </slot>
       <el-table :data="listData" border style="width: 100%; margin-top: 20px">
-        <el-table-column prop="major" label="major" width="180" />
-        <el-table-column prop="needed" label="needed" width="180" />
-        <el-table-column prop="remark" label="remark" width="180" sortable />
-        <el-table-column prop="stage" label="stage" width="180" sortable />
+        <el-table-column prop="major" label="major" width="300" />
+        <el-table-column prop="needed" label="needed" width="300" />
+        <el-table-column prop="remark" label="remark" width="300" sortable />
+        <el-table-column prop="stage" label="stage" width="300" sortable />
         <el-table-column label="operate" width="300">
           <template #default="scope">
             <el-button
@@ -103,7 +103,7 @@ onMounted(() => {
 <style lang="scss" scoped>
 .header {
   display: flex;
-  justify-content: end;
+  justify-content: start;
   align-items: center;
   .course-btn {
     margin: 0 20px;
